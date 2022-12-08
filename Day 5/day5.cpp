@@ -4,7 +4,8 @@
 
 using namespace std;
 
-string part1(fstream &in, vector<vector<char> > ship) {
+string part1(vector<vector<char> > ship) {
+    fstream in("input.txt");
     string a, b, c, res;
     int quantity, from, to;
     while (in >> a >> quantity >> b >> from >> c >> to) {
@@ -18,10 +19,12 @@ string part1(fstream &in, vector<vector<char> > ship) {
     for(int i = 0; i < ship.size(); i++)
         res.push_back(ship.at(i).at(ship.at(i).size() - 1));
 
+    in.close();
     return res;
 }
 
-string part2(fstream &in, vector<vector<char> > ship) {
+string part2(vector<vector<char> > ship) {
+    fstream in("input.txt");
     string a, b, c, res;
     int quantity, from, to;
     while (in >> a >> quantity >> b >> from >> c >> to) {
@@ -37,12 +40,11 @@ string part2(fstream &in, vector<vector<char> > ship) {
     for(int i = 0; i < ship.size(); i++)
         res.push_back(ship.at(i).at(ship.at(i).size() - 1));
 
+    in.close();
     return res;
 }
 
-int main()
-{
-    fstream in("input.txt");
+int main() {
     vector<vector<char> > ship
     {
         {'W', 'R', 'F'},
@@ -55,9 +57,7 @@ int main()
         {'P', 'N', 'R', 'F', 'W', 'T', 'V', 'C'},
         {'J', 'W', 'H', 'G', 'R', 'S', 'V'}
     };
-    cout << "Part 1 answer: " << part1(in, ship) << endl;
-    in.close();
-    in.open("input.txt");
-    cout << "Part 2 answer: " << part2(in, ship) << endl;
+    cout << "Part 1 answer: " << part1(ship) << endl;
+    cout << "Part 2 answer: " << part2(ship) << endl;
     return 0;
 }

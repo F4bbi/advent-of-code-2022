@@ -3,8 +3,7 @@
 
 using namespace std;
 
-int main()
-{
+int part1() {
     ifstream in("input.txt");
     char opponent, me;
     int score = 0;
@@ -26,6 +25,25 @@ int main()
         }
         score = score + me + 1;
     }
-    cout << "Answer:" << score << endl;
-    return 0;
+    in.close();
+    return score;
+}
+
+int part2() {
+    ifstream in("input.txt");
+    char opponent, result;
+    int score = 0;
+    while(in >> opponent >> result) {
+        opponent -= 'A', result -= 'X';
+        // Lose = 0, Draw = 3, Win = 6
+        score += result * 3;
+        score += ((opponent + (result + 2) % 3) % 3) + 1;
+    }
+    in.close();
+    return score;
+}
+
+int main() {
+    cout << "Part 1 answer: " << part1() << endl;
+    cout << "Part 2 answer: " << part2() << endl;
 }
